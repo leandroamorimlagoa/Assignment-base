@@ -1,18 +1,8 @@
 ﻿using Assignment.Application.Common.Interfaces;
 using Assignment.Domain.Entities;
-using Assignment.Domain.Enums;
 using Assignment.Domain.Events;
 
 namespace Assignment.Application.TodoItems.Commands.CreateTodoItem;
-
-public record CreateTodoItemCommand : IRequest<int>
-{
-    public int ListId { get; init; }
-
-    public string? Title { get; init; }
-    public string? Note { get; init; }
-    public PriorityLevel Priority { get; set; }
-}
 
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, int>
 {

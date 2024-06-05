@@ -3,8 +3,6 @@ using Assignment.Domain.Entities;
 
 namespace Assignment.Application.TodoLists.Commands.CreateTodoList;
 
-public record CreateTodoListCommand(string Title) : IRequest<int>;
-
 public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, int>
 {
     private readonly IApplicationDbContext _context;

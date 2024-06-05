@@ -2,8 +2,6 @@
 
 namespace Assignment.Application.TodoItems.Commands.DoneTodoItem;
 
-public record DoneTodoItemCommand(int Id) : IRequest;
-
 public class DoneTodoItemCommandHandler : IRequestHandler<DoneTodoItemCommand>
 {
     private readonly IApplicationDbContext _context;

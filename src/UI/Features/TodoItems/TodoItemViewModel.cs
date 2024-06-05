@@ -49,13 +49,7 @@ public class TodoItemViewModel : Screen
 
     private async void SaveExecute(object parameter)
     {
-        await _sender.Send(new CreateTodoItemCommand
-        {
-            ListId = CurrentItem.ListId,
-            Title = CurrentItem.Title,
-            Note = CurrentItem.Note,
-            Priority = CurrentItem.Priority
-        });
+        await _sender.Send(new CreateTodoItemCommand(CurrentItem.ListId, CurrentItem.Title, CurrentItem.Priority, CurrentItem.Note));
         await TryCloseAsync(true);
     }
 
