@@ -1,4 +1,5 @@
 ﻿using Assignment.Application.Common.Interfaces;
+using Assignment.Domain.Constants;
 
 namespace Assignment.Application.TodoItems.Commands.CreateTodoItem;
 
@@ -10,7 +11,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
     public CreateTodoItemCommandValidator(IApplicationDbContext context)
     {
         RuleFor(v => v.Title)
-            .MaximumLength(200)
+            .MaximumLength(FieldsConfigurations.MaxLengthTitleFields)
             .NotEmpty();
 
         RuleFor(v => new BriefTodoItem(v.ListId, v.Title))

@@ -1,4 +1,5 @@
 ﻿using Assignment.Application.Common.Interfaces;
+using Assignment.Domain.Constants;
 
 namespace Assignment.Application.TodoLists.Commands.CreateTodoList;
 
@@ -12,7 +13,7 @@ public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCo
 
         RuleFor(v => v.Title)
             .NotEmpty()
-            .MaximumLength(200)
+            .MaximumLength(FieldsConfigurations.MaxLengthTitleFields)
             .MustAsync(BeUniqueTitle)
                 .WithMessage("'{PropertyName}' must be unique.")
                 .WithErrorCode("Unique");
