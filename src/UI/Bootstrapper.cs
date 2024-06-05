@@ -53,9 +53,12 @@ internal class Bootstrapper : BootstrapperBase
 
     private static IConfigurationRoot CreateConfiguration()
     {
+        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+
         return new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false, true)
+            .AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: true)
             .Build();
     }
 }

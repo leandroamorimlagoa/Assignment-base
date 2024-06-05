@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Assignment.UI;
+namespace Assignment.UI.Helpers;
 public class RelayCommand : ICommand
 {
     private readonly Action<object> _execute;

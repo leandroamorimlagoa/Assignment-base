@@ -2,10 +2,11 @@
 using Assignment.Application.TodoItems.Commands.CreateTodoItem;
 using Assignment.Application.TodoLists.Queries.GetTodos;
 using Assignment.Domain.Enums;
+using Assignment.UI.Helpers;
 using Caliburn.Micro;
 using MediatR;
 
-namespace Assignment.UI;
+namespace Assignment.UI.Features.TodoItems;
 
 public class TodoItemViewModel : Screen
 {

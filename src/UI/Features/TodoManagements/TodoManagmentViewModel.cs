@@ -1,10 +1,13 @@
 ﻿using System.Windows.Input;
 using Assignment.Application.TodoItems.Commands.DoneTodoItem;
 using Assignment.Application.TodoLists.Queries.GetTodos;
+using Assignment.UI.Features.TodoItems;
+using Assignment.UI.Features.TodoLists;
+using Assignment.UI.Helpers;
 using Caliburn.Micro;
 using MediatR;
 
-namespace Assignment.UI;
+namespace Assignment.UI.Features.TodoManagements;
 internal class TodoManagmentViewModel : Screen
 {
     private readonly ISender _sender;

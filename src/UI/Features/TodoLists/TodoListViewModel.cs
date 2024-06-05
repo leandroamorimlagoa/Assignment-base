@@ -1,9 +1,10 @@
 ﻿using System.Windows.Input;
 using Assignment.Application.TodoLists.Commands.CreateTodoList;
+using Assignment.UI.Helpers;
 using Caliburn.Micro;
 using MediatR;
 
-namespace Assignment.UI;
+namespace Assignment.UI.Features.TodoLists;
 public class TodoListViewModel : Screen
 {
     private readonly ISender _sender;
