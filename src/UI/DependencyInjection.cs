@@ -1,4 +1,5 @@
 ﻿using Assignment.Application.Common.Interfaces;
+using Assignment.UI.Features.PopupServices;
 using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,8 @@ public static class DependencyInjection
         return services.AddTransient<IUser, CurrentUser>()
             .AddTransient<IWindowManager, WindowManager>()
             .AddTransient<MainViewModel>()
-            .AddTransient<TodoManagmentViewModel>();
+            .AddTransient<TodoManagmentViewModel>()
+            .AddSingleton<IDialogService, DialogService>()
+            .AddTransient<MessageDialogViewModel>();
     }
 }
