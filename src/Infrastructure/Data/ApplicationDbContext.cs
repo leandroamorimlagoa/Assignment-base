@@ -4,6 +4,7 @@ using Assignment.Domain.Entities;
 using Assignment.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Assignment.Infrastructure.Data;
 
@@ -14,6 +15,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
     public DbSet<TodoList> TodoLists => Set<TodoList>();
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+
+    public DbSet<Country> Countries => Set<Country>();
+
+    public DbSet<City> Cities => Set<City>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

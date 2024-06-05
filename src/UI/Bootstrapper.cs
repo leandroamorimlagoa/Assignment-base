@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Windows;
-using Assignment.Infrastructure.Data;
+using Assignment.Infrastructure.Data.Extensions;
 using Caliburn.Micro;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,14 +18,15 @@ internal class Bootstrapper : BootstrapperBase
         Initialize();
     }
 
-    protected override async void Configure()
-    {
-        base.Configure();
-        await ServiceProvider.InitialiseDatabaseAsync();
-    }
+    //protected override async void Configure()
+    //{
+    //    base.Configure();
+    //    await ServiceProvider.InitialiseDatabaseAsync();
+    //}
 
     protected override async void OnStartup(object sender, StartupEventArgs e)
     {
+        await ServiceProvider.InitialiseDatabaseAsync();
         await DisplayRootViewForAsync<MainViewModel>();
     }
 
