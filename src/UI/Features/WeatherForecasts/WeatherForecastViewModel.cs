@@ -54,18 +54,6 @@ public class WeatherForecastViewModel : Screen
         {
             _selectedCity = value;
             NotifyOfPropertyChange(() => SelectedCity);
-            CanLoadTemperature = value != null && value.Id > 0;
-        }
-    }
-
-    private bool _canLoadTemperature;
-    public bool CanLoadTemperature
-    {
-        get => _canLoadTemperature;
-        set
-        {
-            _canLoadTemperature = value;
-            NotifyOfPropertyChange(() => CanLoadTemperature);
         }
     }
 
@@ -109,6 +97,10 @@ public class WeatherForecastViewModel : Screen
         if (SelectedCity != null)
         {
             WeatherForecast = await _sender.Send(new GetTemperaturesQuery { CityId = SelectedCity.Id });
+        }
+        else
+        {
+            WeatherForecast = null;
         }
     }
 

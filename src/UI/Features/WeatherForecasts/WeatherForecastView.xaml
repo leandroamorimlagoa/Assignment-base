@@ -13,22 +13,10 @@
         <ComboBox ItemsSource="{Binding Cities}"
                   SelectedItem="{Binding SelectedCity, UpdateSourceTrigger=PropertyChanged}"
                   DisplayMemberPath="Name"
-                  IsEnabled="{Binding IsCitiesEnabled}"/>
+                  IsEnabled="{Binding IsCitiesEnabled}"
+                  cal:Message.Attach="[Action LoadTemperature]"/>
 
         <Border Height="20" />
-
-        <Button Content="Load Temperature" cal:Message.Attach="[Action LoadTemperature]">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding DataContext.CanLoadTemperature, RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
         <Button Content="Close" cal:Message.Attach="[Action Close]" />
 
         <Label Content="Temperature:"/>
