@@ -8,7 +8,7 @@ public class TodoItemDto
 
     public int ListId { get; init; }
 
-    public string? Title { get; init; }
+    public string Title { get; init; } = string.Empty;
 
     public bool Done { get; init; }
 

@@ -1,6 +1,7 @@
 ﻿using Assignment.Application.Common.Interfaces;
 using Assignment.UI.Features.PopupServices;
 using Assignment.UI.Features.TodoManagements;
+using Assignment.UI.Features.WeatherForecasts;
 using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,7 @@ public static class DependencyInjection
             .AddTransient<IWindowManager, WindowManager>()
             .AddTransient<MainViewModel>()
             .AddTransient<TodoManagmentViewModel>()
+            .AddTransient<WeatherForecastViewModel>()
             .AddSingleton<IDialogService, DialogService>()
             .AddTransient<MessageDialogViewModel>();
     }
