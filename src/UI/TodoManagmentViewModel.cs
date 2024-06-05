@@ -32,6 +32,18 @@ internal class TodoManagmentViewModel : Screen
         {
             _selectedTodoList = value;
             NotifyOfPropertyChange(() => SelectedTodoList);
+            CanAddTodoItem = _selectedTodoList != null && _selectedTodoList.Id > 0;
+        }
+    }
+
+    private bool _canAddTodoItem;
+    public bool CanAddTodoItem
+    {
+        get => _canAddTodoItem;
+        set
+        {
+            _canAddTodoItem = value;
+            NotifyOfPropertyChange(() => CanAddTodoItem);
         }
     }
 
@@ -43,6 +55,18 @@ internal class TodoManagmentViewModel : Screen
         {
             _selectedItem = value;
             NotifyOfPropertyChange(() => SelectedItem);
+            CanFinishTodoItem = _selectedItem != null && _selectedItem.Id > 0 && !_selectedItem.Done;
+        }
+    }
+
+    private bool _canFinishTodoItem;
+    public bool CanFinishTodoItem
+    {
+        get => _canFinishTodoItem;
+        set
+        {
+            _canFinishTodoItem = value;
+            NotifyOfPropertyChange(() => CanFinishTodoItem);
         }
     }
 
@@ -101,5 +125,6 @@ internal class TodoManagmentViewModel : Screen
     private async void DoneTodoItem(object obj)
     {
         await _sender.Send(new DoneTodoItemCommand(SelectedItem.Id));
+        await RefereshTodoLists();
     }
 }

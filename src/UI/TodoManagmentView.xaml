@@ -39,8 +39,30 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Add Item" Command="{Binding DataContext.AddTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="1" Margin="5"/>
-            <Button Content="Done" Command="{Binding DataContext.DoneTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="2" Margin="5"/>
+            <Button Content="Add Item" Command="{Binding DataContext.AddTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="1" Margin="5">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DataContext.CanAddTodoItem, RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Done" Command="{Binding DataContext.DoneTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="2" Margin="5">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DataContext.CanFinishTodoItem, RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>
