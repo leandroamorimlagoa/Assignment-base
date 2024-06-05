@@ -23,7 +23,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
 
     private async Task<bool> BeUniqueTitle(BriefTodoItem todoItem, CancellationToken cancellationToken)
     {
-        return await _context.TodoItems
-            .AllAsync(l => l.Title != todoItem.Title || l.ListId != todoItem.ListId, cancellationToken);
+        return !await _context.TodoItems
+                                .AnyAsync(i => i.ListId == todoItem.ListId && EF.Functions.Like(i.Title, todoItem.Title), cancellationToken);
     }
 }

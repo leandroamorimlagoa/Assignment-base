@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="150" Width="800">
+        Height="150" Width="800" WindowStartupLocation="CenterOwner">
     <StackPanel Margin="10">
         <Label Content="Title:"/>
         <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
