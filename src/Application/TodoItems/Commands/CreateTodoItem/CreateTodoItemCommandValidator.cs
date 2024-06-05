@@ -16,7 +16,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
 
         RuleFor(v => new BriefTodoItem(v.ListId, v.Title))
             .MustAsync(BeUniqueTitle)
-                .WithMessage("'{PropertyName}' must be unique.")
+                .WithMessage("'Title' must be unique.")
                 .WithErrorCode("Unique");
 
         _context = context;
