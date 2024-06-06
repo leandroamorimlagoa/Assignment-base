@@ -9,6 +9,7 @@ public class TodoListCachedRepository : ITodoListCachedRepository
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly MemoryCache<List<TodoList>> _cache;
+    private const string _cacheKeyForAllTodoLists = "TodoLists";
 
     public TodoListCachedRepository(IApplicationDbContext dbContext)
     {
@@ -16,9 +17,15 @@ public class TodoListCachedRepository : ITodoListCachedRepository
         _cache = new();
     }
 
+    public Task CleanAllTodoLists()
+    {
+        _cache.Remove(_cacheKeyForAllTodoLists);
+        return Task.CompletedTask;
+    }
+
     public async Task<IEnumerable<TodoList>> GetAllTodoLists()
     {
-        if (_cache.TryGetValue("TodoLists", out var todoLists) && todoLists != null)
+        if (_cache.TryGetValue(_cacheKeyForAllTodoLists, out var todoLists) && todoLists != null)
         {
             return todoLists;
         }
@@ -28,7 +35,7 @@ public class TodoListCachedRepository : ITodoListCachedRepository
             .Include(t => t.Items)
             .ToListAsync();
 
-        _cache.Set("TodoLists", todoLists, TimeSpan.FromMinutes(5));
+        _cache.Set(_cacheKeyForAllTodoLists, todoLists, TimeSpan.FromMinutes(5));
 
         return todoLists;
     }

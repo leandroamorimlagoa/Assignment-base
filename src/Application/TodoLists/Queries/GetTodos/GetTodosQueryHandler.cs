@@ -17,8 +17,6 @@ public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, IList<TodoLis
     public async Task<IList<TodoListDto>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
     {
         var todoLists = await _todoListCachedRepository.GetAllTodoLists();
-
-        var result = _mapper.Map<IList<TodoListDto>>(todoLists);
-        return result;
+        return _mapper.Map<IList<TodoListDto>>(todoLists);
     }
 }

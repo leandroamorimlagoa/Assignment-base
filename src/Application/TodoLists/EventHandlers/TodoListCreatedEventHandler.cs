@@ -2,24 +2,22 @@
 using Assignment.Domain.Interfaces.CachedRepositories;
 using Microsoft.Extensions.Logging;
 
-namespace Assignment.Application.TodoItems.EventHandlers;
-
-public class TodoItemCreatedEventHandler : INotificationHandler<TodoItemCreatedEvent>
+namespace Assignment.Application.TodoLists.EventHandlers;
+public class TodoListCreatedEventHandler : INotificationHandler<TodoListCreatedEvent>
 {
-    private readonly ILogger<TodoItemCreatedEventHandler> _logger;
+    private readonly ILogger<TodoListCreatedEventHandler> _logger;
     private readonly ITodoListCachedRepository _todoListCachedRepository;
 
-    public TodoItemCreatedEventHandler(ILogger<TodoItemCreatedEventHandler> logger
+    public TodoListCreatedEventHandler(ILogger<TodoListCreatedEventHandler> logger
                                         , ITodoListCachedRepository todoListCachedRepository)
     {
         _logger = logger;
         _todoListCachedRepository = todoListCachedRepository;
     }
 
-    public Task Handle(TodoItemCreatedEvent notification, CancellationToken cancellationToken)
+    public Task Handle(TodoListCreatedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Assignment Domain Event: {DomainEvent}", notification.GetType().Name);
-
         return _todoListCachedRepository.CleanAllTodoLists();
     }
 }

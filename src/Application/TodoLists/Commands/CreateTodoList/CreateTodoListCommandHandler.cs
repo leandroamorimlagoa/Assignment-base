@@ -1,5 +1,6 @@
 ﻿using Assignment.Application.Common.Interfaces;
 using Assignment.Domain.Entities;
+using Assignment.Domain.Events;
 
 namespace Assignment.Application.TodoLists.Commands.CreateTodoList;
 
@@ -17,6 +18,8 @@ public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListComman
         var entity = new TodoList();
 
         entity.Title = request.Title;
+
+        entity.AddDomainEvent(new TodoListCreatedEvent(entity));
 
         _context.TodoLists.Add(entity);
 
