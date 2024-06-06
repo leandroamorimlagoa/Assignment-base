@@ -1,6 +1,8 @@
 ﻿using Assignment.Application.Common.Interfaces;
 using Assignment.Domain.Constants;
+using Assignment.Domain.Interfaces.CachedRepositories;
 using Assignment.Infrastructure.Data;
+using Assignment.Infrastructure.Data.CachedRepositories;
 using Assignment.Infrastructure.Data.Interceptors;
 using Assignment.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -42,6 +44,7 @@ public static class DependencyInjection
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddApiEndpoints();
 
+        services.AddSingleton<ITodoListCachedRepository, TodoListCachedRepository>();
         services.AddSingleton(TimeProvider.System);
         services.AddTransient<IIdentityService, IdentityService>();
 

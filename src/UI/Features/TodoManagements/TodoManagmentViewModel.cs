@@ -8,7 +8,7 @@ using Caliburn.Micro;
 using MediatR;
 
 namespace Assignment.UI.Features.TodoManagements;
-internal class TodoManagmentViewModel : Screen
+public class TodoManagmentViewModel : Screen
 {
     private readonly ISender _sender;
     private readonly IWindowManager _windowManager;
