@@ -20,7 +20,7 @@
         <Button Content="Close" cal:Message.Attach="[Action Close]" />
 
         <Label Content="Temperature:"/>
-        <TextBlock Text="{Binding WeatherForecast.TemperatureC}" 
+        <TextBlock Text="{Binding WeatherForecastTemperature}" 
                    FontSize="24" FontWeight="Bold" Foreground="Red" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </StackPanel>

@@ -1,8 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Assignment.Application.TodoLists.Queries.GetTodos;
-using Assignment.Application.WeatherForecasts.Queries.GetCities;
+﻿using Assignment.Application.WeatherForecasts.Queries.GetCities;
 using Assignment.Application.WeatherForecasts.Queries.GetCountries;
-using Assignment.Application.WeatherForecasts.Queries.GetTemperatures;
 using Caliburn.Micro;
 using MediatR;
 
@@ -68,14 +65,14 @@ public class WeatherForecastViewModel : Screen
         }
     }
 
-    private WeatherForecastDto _weatherForecast;
-    public WeatherForecastDto WeatherForecast
+    private string _weatherForecastTemperature;
+    public string WeatherForecastTemperature
     {
-        get => _weatherForecast;
+        get => _weatherForecastTemperature;
         set
         {
-            _weatherForecast = value;
-            NotifyOfPropertyChange(() => WeatherForecast);
+            _weatherForecastTemperature = value;
+            NotifyOfPropertyChange(() => WeatherForecastTemperature);
         }
     }
 
@@ -96,12 +93,18 @@ public class WeatherForecastViewModel : Screen
     {
         if (SelectedCity != null)
         {
-            WeatherForecast = await _sender.Send(new GetTemperaturesQuery { CityId = SelectedCity.Id });
+            var temperatureQuery = new GetTemperaturesQuery
+            {
+                CityName = SelectedCity.Name,
+                DateTimeUtc = DateTime.UtcNow
+            };
+
+            var temp = await _sender.Send(temperatureQuery);
+            WeatherForecastTemperature = $"{temp}°C";
+            return;
         }
-        else
-        {
-            WeatherForecast = null;
-        }
+
+        WeatherForecastTemperature = string.Empty;
     }
 
     public async void Close()

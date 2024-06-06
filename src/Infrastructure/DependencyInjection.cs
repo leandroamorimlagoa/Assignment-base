@@ -5,6 +5,7 @@ using Assignment.Infrastructure.Data;
 using Assignment.Infrastructure.Data.CachedRepositories;
 using Assignment.Infrastructure.Data.Interceptors;
 using Assignment.Infrastructure.Identity;
+using Assignment.Infrastructure.ServiceApis;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -47,6 +48,7 @@ public static class DependencyInjection
         services.AddSingleton<ITodoListCachedRepository, TodoListCachedRepository>();
         services.AddSingleton(TimeProvider.System);
         services.AddTransient<IIdentityService, IdentityService>();
+        services.AddTransient<IWeatherForecastApi, WeatherForecastApi>();
 
         services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));

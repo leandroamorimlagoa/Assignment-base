@@ -1,30 +1,17 @@
 ﻿using Assignment.Application.Common.Interfaces;
-using Assignment.Application.WeatherForecasts.Queries.GetCities;
-using Assignment.Application.WeatherForecasts.Queries.GetTemperatures;
 
 namespace Assignment.Application.WeatherForecasts.Queries.GetCountries;
-public class GetTemperaturesQueryHandler : IRequestHandler<GetTemperaturesQuery, WeatherForecastDto>
+public class GetTemperaturesQueryHandler : IRequestHandler<GetTemperaturesQuery, int>
 {
-    private readonly IApplicationDbContext _context;
-    private readonly IMapper _mapper;
+    private readonly IWeatherForecastApi _weatherForecastApi;
 
-    public GetTemperaturesQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetTemperaturesQueryHandler(IWeatherForecastApi weatherForecastApi)
     {
-        _context = context;
-        _mapper = mapper;
+        _weatherForecastApi = weatherForecastApi;
     }
 
-    public Task<WeatherForecastDto> Handle(GetTemperaturesQuery request, CancellationToken cancellationToken)
+    public Task<int> Handle(GetTemperaturesQuery request, CancellationToken cancellationToken)
     {
-        var minTemperature = 0;
-        var maxTemperature = 40;
-        var temperatureC = new Random().Next(minTemperature, maxTemperature);
-
-        var result = new WeatherForecastDto
-        {
-            DateTimeUtc = DateTime.UtcNow,
-            TemperatureC = temperatureC
-        };
-        return Task.FromResult(result);
+        return Task.FromResult(_weatherForecastApi.GetTemperature(request.CityName, request.DateTimeUtc));
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Assignment.Application.Common.Security;
-using Assignment.Application.WeatherForecasts.Queries.GetTemperatures;
 
 namespace Assignment.Application.WeatherForecasts.Queries.GetCountries;
 
 [Authorize]
-public record GetTemperaturesQuery : IRequest<WeatherForecastDto>
+public record GetTemperaturesQuery : IRequest<int>
 {
-    public int CityId { get; set; }
+    public string CityName { get; init; } = string.Empty;
+    public DateTime DateTimeUtc { get; init; } = DateTime.UtcNow;
 }
