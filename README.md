@@ -58,3 +58,22 @@ The following features need to be implemented:
 This document provides a comprehensive guide for developers to understand and contribute effectively to the ToDoList management system. For any questions or further clarifications, please consult the project's lead developer.
 
 We wish you the best of luck and look forward to reviewing your submission!
+
+=============
+
+# Additional notes
+
+Initially I saw that the context did not inherit DbContext, and when I saw things from Identity mixed
+
+I would suggest to separate the responsibilities of each context, security and business.
+
+In the validation done the way I did, I didn't like it because I didn't feel confident when using uppercase and lowercase letters. I would change this if there were longer StringComparison or alternatives that were implemented in Entity Framework SQLite
+   -  _context.TodoLists.AnyAsync(l => l.Title == title
+
+Remove unused libraries, which are some
+
+Configure Log for files in the application
+
+Use log in memory in tests
+
+Use integration tests by configuring DbContext from Bootstrapper
