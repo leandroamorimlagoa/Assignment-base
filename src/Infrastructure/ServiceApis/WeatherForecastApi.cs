@@ -1,7 +1,7 @@
 ﻿using Assignment.Application.Common.Interfaces;
 
 namespace Assignment.Infrastructure.ServiceApis;
-internal class WeatherForecastApi : IWeatherForecastApi
+public class WeatherForecastApi : IWeatherForecastApi
 {
     public int GetTemperature(string cityName, DateTime time)
     {

@@ -93,7 +93,7 @@ public class TodoManagmentViewModel : Screen
         DoneTodoItemCommand = new RelayCommand(DoneTodoItem);
     }
 
-    private async Task RefereshTodoLists()
+    public async Task RefereshTodoLists()
     {
         var selectedListId = SelectedTodoList?.Id;
 
